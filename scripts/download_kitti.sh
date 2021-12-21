@@ -11,12 +11,12 @@ cd $KITTI_PATH
 
 aws s3 --no-sign-request sync s3://avg-kitti/ . --exclude '*' --include data_object_image_2.zip
 
-!unzip data_object_image_2.zip 'testing/*' -d /KITTI
+!unzip data_object_image_2.zip 'testing/*' -d ./
 rm -rf data_object_image_2.zip
 
 aws s3  --no-sign-request sync s3://avg-kitti/ . --exclude '*' --include data_object_image_3.zip
 
-!unzip data_object_image_3.zip 'testing/*' -d /KITTI
+!unzip data_object_image_3.zip 'testing/*' -d ./
 rm -rf data_object_image_3.zip
 
 # Download KITTI lidar and calibration and 3D bounding box data
