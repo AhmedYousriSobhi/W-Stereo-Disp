@@ -237,14 +237,13 @@ def main():
             log.info('[Attention]: Do not find checkpoint {}'.format(args.resume))
 
     if args.generate_depth_map:
-        os.makedirs(args.save_path + '/depth_maps/' + args.data_tag, exist_ok=True)
+        os.makedirs(args.save_path + '/depth_maps/', exist_ok=True)
 
         tqdm_eval_loader = tqdm(TestImgLoader, total=len(TestImgLoader))
         for batch_idx, (imgL_crop, imgR_crop, calib, H, W, filename) in enumerate(tqdm_eval_loader):
             pred_disp = inference(imgL_crop, imgR_crop, calib, model)
             for idx, name in enumerate(filename):
-                np.save(args.save_path + '/depth_maps/' + args.data_tag +
-                        '/' + name, pred_disp[idx][-H[idx]:, :W[idx]])
+                np.save(args.save_path + '/depth_maps/' + name, pred_disp[idx][-H[idx]:, :W[idx]])
         import sys
         sys.exit()
 
